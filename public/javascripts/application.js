@@ -55,9 +55,9 @@ function calculateWidth() {
     $("#grid").width(width);  
   }
     $("#download_css a").attr({href : "/grid.css?column_width=" + parseInt($("input#column_width").attr("value")) + "&column_amount=" + parseInt($("input#column_amount").attr("value")) + "&gutter_width=" + parseInt($("input#gutter_width").attr("value")) });
-    $("#preview_grid a").attr({href : "/grid/?column_width=" + parseInt($("input#column_width").attr("value")) + "&column_amount=" + parseInt($("input#column_amount").attr("value")) + "&gutter_width=" + parseInt($("input#gutter_width").attr("value")) });
+    $("#preview_grid a").attr({href : "/grid?column_width=" + parseInt($("input#column_width").attr("value")) + "&column_amount=" + parseInt($("input#column_amount").attr("value")) + "&gutter_width=" + parseInt($("input#gutter_width").attr("value")) });
     $("#download_fluid_css a").attr({href : "/fluid_grid.css?column_amount=" + parseInt($("input#column_amount").attr("value")) });
-    $("#preview_fluid_grid a").attr({href : "/fluid_grid/?column_amount=" + parseInt($("input#column_amount").attr("value")) });
+    $("#preview_fluid_grid a").attr({href : "/fluid_grid?column_amount=" + parseInt($("input#column_amount").attr("value")) });
 }
 
 function setNumberOfColumns() {
