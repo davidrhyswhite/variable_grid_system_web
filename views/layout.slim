@@ -1,0 +1,106 @@
+doctype html
+html lang="en"
+  head
+    title
+      = "Variable Grid System :: Generate CSS grid templates based on '960 Grid System'"
+    meta http-equiv="Content-Type" content="text/html; charset=utf-8"
+    meta name="language" content="en"
+    meta name="viewport" content="width=1024,maximum-scale=1.0"
+
+    link href="/stylesheets/reset.css" media="screen" rel="stylesheet" type="text/css"
+    link href="http://www.spry-soft.com/grids/grid.css?column_width=60&amp;column_amount=12&amp;gutter_width=20" media="screen" rel="stylesheet" type="text/css"
+    link href="/stylesheets/application.css" media="screen" rel="stylesheet" type="text/css"
+
+    /![if IE]
+      script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"
+    /![if lt IE 9]
+      script type="text/javascript" src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"
+
+  body    
+    .container_12
+      section.welcome.grid_12
+        h1 Variable Grid System
+        hr
+      .grid_3
+        p 
+          span.grid_2.alpha
+            label for="column_width"
+              | Column width 
+          span.grid_1.omega
+            span#column_width_text.hidden
+            input type="text" id="column_width" name="column_width" class="text" value="60" 
+        p 
+          span.grid_2.alpha
+            label for="column_amount"
+              | Number of columns 
+          span.grid_1.omega
+            input type="text" id="column_amount" name="column_amount" class="text" value="12" 
+        
+        p
+          span.grid_2.alpha
+            label for="gutter_width"
+              | Gutter width
+          span.grid_1.omega
+            input type="text" id="gutter_width" name="gutter_width" class="text" value="20"
+
+      .grid_3
+        p
+          | Content width: 
+          br
+          span#content_width
+            | &nbsp; 
+        p
+          | Full width: 
+          br
+          span#full_width_text
+            | &nbsp;
+          input type="text" id="full_width" name="full_width" style="width:65%;" class="hidden"
+          br
+          br 
+          input type="checkbox" id="fix_width_check" name="fix_width_check"
+          label class="fix_width_check" for="fix_width_check"
+            | Check to edit the width
+
+      .grid_3
+        p#preview_grid
+          a href="/grids/grid?column_width=60&amp;column_amount=12&amp;gutter_width=20"
+            img alt="Preview" src="/images/preview.png?1289555267" 
+            | Preview 
+        p#download_css
+          a href="/grids/grid.css?column_width=60&amp;column_amount=12&amp;gutter_width=20"
+            img alt="Download_css" src="/images/download_css.png?1289555267"
+            | Download CSS File
+        p
+          | 960 Fluid 
+        p#preview_fluid_grid
+          a href="/grids/fluid_grid?column_width=60&amp;column_amount=12&amp;gutter_width=20"
+            img alt="Preview" src="/images/preview.png?1289555267"
+            | Preview 
+        p#download_fluid_css
+          a href="/grids/fluid_grid.css?column_width=60&amp;column_amount=12&amp;gutter_width=20"
+            img alt="Download_css" src="/images/download_css.png?1289555267"
+            | Download CSS File
+         
+      .grid_3 
+        p 
+          | The variable grid system is a quick way to generate an underlying CSS grid for your site. The CSS generated file is based on the 
+          a href="http://960.gs/" 
+            | 960 Grid System
+          |. 
+        p
+          strong
+            | 15/11/09 Update: 
+          | Updated to allow fluid grid and fixed some bugs with odd gutter sizes.
+           
+ 
+      .clear 
+      #grid 
+
+      #footer.grid_12
+        p
+          | Variable Grid System 0.6 designed &amp; developed by 
+          a href="http://www.spry-soft.com/" SprySoft
+          | , Based on 
+          a href="http://960.gs/" 960 Grid System 
+  script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"
+  script type="text/javascript" src="/javascripts/application.js"
