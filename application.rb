@@ -28,4 +28,12 @@ class Application < Sinatra::Base
     sass :application
   end
 
+  get '/grid.css' do
+    erb :grid_css, {'Content-Type' => 'text/plain'}
+  end
+
+  get '/grid' do
+    erb :grid
+  end
+
 end

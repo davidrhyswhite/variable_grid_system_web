@@ -1,0 +1,81 @@
+<% 
+	column_amount = params[:column_amount].to_i
+	column_width = params[:column_width].to_i
+	margin_width = params[:gutter_width].to_i / 2	
+	gutter_width = params[:gutter_width].to_i
+%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+	  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link href="/grid.css<%= '?column_width=' + column_width.to_s + '&column_amount=' + column_amount.to_s + '&gutter_width=' + gutter_width.to_s %>" media="screen" rel="stylesheet" type="text/css" />
+		<style type="text/css">
+			body { background-color: #fff; }
+			.container { background-color:#333; }
+			.container div p { background-color:#fff; }
+			div p { border:1px solid #333; padding:10px; }
+			h2 { color:#fff; }
+			
+		</style>
+	</head>
+
+	<body>
+		<div class="container container_<%= column_amount %>">
+			<h2 class="grid_<%= column_amount %>">
+				<%= column_amount %> Column Grid
+			</h2>
+			<div class="grid_<%= column_amount %>">
+				<p>
+					<%= (column_width * column_amount) + (gutter_width * column_amount) - gutter_width %>px
+				</p>
+			</div>
+			<%
+				i = 1
+				string = ""
+				temp_width = column_width
+				temp_width2 = (column_width * column_amount) + (column_amount * gutter_width) - (column_width + (gutter_width * 2))
+				while i <= column_amount / 2 do
+					string = string + "<div class='clear'>&nbsp;</div>\n"
+					string = string + "<div class='grid_#{i.to_s}'>\n<p>"
+					#string = string + "\twidth:" + temp_width.to_s + "px;"
+					string = string + "#{temp_width}px"
+					string = string + "</p>\n</div>"
+					
+					string = string + "<div class='grid_#{(column_amount - i).to_s}'>\n<p>"
+					#string = string + "\twidth:" + temp_width.to_s + "px;"
+					string = string + "#{temp_width2}px"
+					string = string + "</p>\n</div>"
+					
+					
+					temp_width = temp_width + (column_width + gutter_width)
+					temp_width2 = temp_width2 - (column_width + gutter_width)
+					i += 1
+				end
+			%>
+			<%= string %>
+
+
+			<%
+				i = 1
+				string = ""
+				suffix = column_amount - 1
+				prefix = 1
+				prefix_string = ""
+				while i <= column_amount do
+					string = string + "<div class='clear'>&nbsp;</div>\n"
+					string = string + "<div class='grid_1 #{prefix_string} suffix_#{suffix}'>\n<p>"
+					
+					string = string + "#{column_width}px"
+					string = string + "</p>\n</div>"
+					
+					suffix = suffix - 1
+					prefix_string = "prefix_" + prefix.to_s
+					prefix = prefix + 1
+					i += 1
+				end
+			%>
+			<%= string %>
+			<div class="clear">&nbsp;</div>
+		</div>
+	</body>
+</html>
