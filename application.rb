@@ -20,6 +20,10 @@ class Application < Sinatra::Base
     end
   end
 
+  before '/*.css' do
+    content_type 'text/css'
+  end
+
   get '/' do
     slim :index
   end
@@ -29,11 +33,19 @@ class Application < Sinatra::Base
   end
 
   get '/grid.css' do
-    erb :grid_css, {'Content-Type' => 'text/plain'}
+    erb :grid_css
   end
 
   get '/grid' do
     erb :grid
+  end
+
+  get '/fluid_grid.css' do
+    erb :fluid_grid_css
+  end
+
+  get '/fluid_grid' do
+    erb :fluid_grid
   end
 
 end

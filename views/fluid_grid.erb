@@ -7,25 +7,23 @@
 	gutter_width = params[:gutter_width].to_i
 %>
 	<head>
-		<link href="/grid.css<%= '?column_width=' + column_width.to_s + '&column_amount=' + column_amount.to_s + '&gutter_width=' + gutter_width.to_s %>" media="screen" rel="stylesheet" type="text/css" />
+		<link href="/fluid_grid.css<%= '?column_width=' + column_width.to_s + '&column_amount=' + column_amount.to_s + '&gutter_width=' + gutter_width.to_s %>" media="screen" rel="stylesheet" type="text/css" />
 		<style type="text/css">
 			body { background-color: #fff; }
 			.container { background-color:#333; }
 			.container div p { background-color:#fff; }
 			div p { border:1px solid #333; padding:10px; }
 			h2 { color:#fff; }
-			
 		</style>
 	</head>
-
 	<body>
 		<div class="container container_<%= column_amount %>">
 			<h2 class="grid_<%= column_amount %>">
-				<%= column_amount %> Column Grid
+				<%= column_amount %> Column Fluid Grid
 			</h2>
 			<div class="grid_<%= column_amount %>">
 				<p>
-					<%= (column_width * column_amount) + (gutter_width * column_amount) - gutter_width %>px
+					<%= column_amount %> grid
 				</p>
 			</div>
 			<%
@@ -37,12 +35,12 @@
 					string = string + "<div class='clear'>&nbsp;</div>\n"
 					string = string + "<div class='grid_#{i.to_s}'>\n<p>"
 					#string = string + "\twidth:" + temp_width.to_s + "px;"
-					string = string + "#{temp_width}px"
+					string = string + "#{i.to_s} grid"
 					string = string + "</p>\n</div>"
 					
 					string = string + "<div class='grid_#{(column_amount - i).to_s}'>\n<p>"
 					#string = string + "\twidth:" + temp_width.to_s + "px;"
-					string = string + "#{temp_width2}px"
+					string = string + "#{(column_amount - i).to_s} grid"
 					string = string + "</p>\n</div>"
 					
 					
@@ -64,7 +62,7 @@
 					string = string + "<div class='clear'>&nbsp;</div>\n"
 					string = string + "<div class='grid_1 #{prefix_string} suffix_#{suffix}'>\n<p>"
 					
-					string = string + "#{column_width}px"
+					string = string + "1 grid"
 					string = string + "</p>\n</div>"
 					
 					suffix = suffix - 1
