@@ -23,6 +23,17 @@
 
 
 %>
+/*
+  Forces backgrounds to span full width,
+  even if there is horizontal scrolling.
+  Increase this if your layout is wider.
+
+  Note: IE6 works fine without this fix.
+*/
+
+body {
+  min-width: <%= (column_width * column_amount) + (column_amount * gutter_width) %>px;
+}
 
 /* Containers
 ----------------------------------------------------------------------------------------------------*/
@@ -52,6 +63,22 @@
 %>
 <%= string %>
 
+
+<%
+	i = 1
+	string = ""
+	while i <= column_amount do
+		if i == column_amount
+			string = string + ".push_" + i.to_s + ", .pull_" + i.to_s + ""
+			string = string + " {\n" if i == column_amount
+			string = string + ",\n" if i != column_amount
+		i += 1
+	end
+	string = string + "\tposition:relative;\n}"
+%>
+<%= string %>
+
+
 /* Grid >> Children (Alpha ~ First, Omega ~ Last)
 ----------------------------------------------------------------------------------------------------*/
 
@@ -79,6 +106,7 @@
 	end
 %>
 <%= string %>
+
 
 /* Prefix Extra Space >> <%= column_amount %> Columns
 ----------------------------------------------------------------------------------------------------*/
@@ -149,41 +177,41 @@
 <%= string %>
 
 
-/* Clear Floated Elements
+/* `Clear Floated Elements
 ----------------------------------------------------------------------------------------------------*/
 
 /* http://sonspring.com/journal/clearing-floats */
 
 .clear {
-	clear: both;
-	display: block;
-	overflow: hidden;
-	visibility: hidden;
-	width: 0;
-	height: 0;
+  clear: both;
+  display: block;
+  overflow: hidden;
+  visibility: hidden;
+  width: 0;
+  height: 0;
 }
 
-/* http://perishablepress.com/press/2008/02/05/lessons-learned-concerning-the-clearfix-css-hack */
+/* http://www.yuiblog.com/blog/2010/09/27/clearfix-reloaded-overflowhidden-demystified */
+
+.clearfix:before,
+.clearfix:after {
+  content: '\0020';
+  display: block;
+  overflow: hidden;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
 
 .clearfix:after {
-	clear: both;
-	content: ' ';
-	display: block;
-	font-size: 0;
-	line-height: 0;
-	visibility: hidden;
-	width: 0;
-	height: 0;
+  clear: both;
 }
+
+/*
+  The following zoom:1 rule is specifically for IE6 + IE7.
+  Move to separate stylesheet if invalid CSS is a problem.
+*/
 
 .clearfix {
-	display: inline-block;
-}
-
-* html .clearfix {
-	height: 1%;
-}
-
-.clearfix {
-	display: block;
+  zoom: 1;
 }
