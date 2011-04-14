@@ -68,10 +68,9 @@ body {
 	i = 1
 	string = ""
 	while i <= column_amount do
-		if i == column_amount
-			string = string + ".push_" + i.to_s + ", .pull_" + i.to_s + ""
-			string = string + " {\n" if i == column_amount
-			string = string + ",\n" if i != column_amount
+		string = string + ".push_" + i.to_s + ", .pull_" + i.to_s + ""
+		string = string + " {\n" if i == column_amount
+		string = string + ",\n" if i != column_amount
 		i += 1
 	end
 	string = string + "\tposition:relative;\n}"
